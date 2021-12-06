@@ -1,0 +1,63 @@
+CREATE USER cinemaUser WITH ENCRYPTED PASSWORD 'mycinema1234';
+CREATE TABLESPACE cinema LOCATION 'INSERT PATH';
+CREATE DATABASE cinemadb
+	OWNER cinemaUser
+	TEMPLATE cinemaUSER
+	TABLESPACE cinema;
+
+\c cinemadb;
+
+CREATE SCHEMA IF NOT EXIST cinemaSchema AUTHORIZATION cinemaUser
+	CREATE TABLE customer (
+		id 		serial PRIMARY KEY,
+		lastName 	text NOT NULL,
+		firstName 	text NOT NULL,
+		birthday 	date NOT NULL,
+		joining 	date NOT NULL,
+		street 		text NOT NULL,
+		streetNum 	smallint NOT NULL,
+		zip 		text NOT NULL,
+		city 		text NOT NULL,
+		country 	text NOT NULL )	
+	CREATE TABLE bonuscard (
+		id 		int REFERENCES customer,
+		balance 	float4,
+		points 		int )
+	CREATE TABLE theater (
+		id 		serial PRIMARY KEY,
+		seats 		json NOT NULL,
+		audioSystem 	text,
+		specialInfos 	json )
+	CREATE TABLE movie (
+		id 		serial PRIMARY KEY,
+		name 		text NOT NULL,
+		originalName 	text NOT NULL,
+		genre 		text[],
+		description 	text,
+		length 		smallint,
+		actors 		text[],
+		directors 	text[],
+		country 	text,
+		year 		date,
+		ageRestriction 	smallint,
+		soundSystem 	text,
+		studio 		text,
+		trailer 	text[],
+		tags 		text[] )
+	CREATE TABLE screening (
+		id 		serial PRIMARY KEY,
+		movieID 	int REFERENCES movie,
+		theaterID 	int REFERENCES theater,
+		screeningTime 	timestamp NOT NULL )
+	CREATE TABLE booking (
+		id 		serial PRIMARY KEY,
+		screeningID 	int REFERENCES screening,
+		customerID 	int REFERENCES customer,
+		seats 		json NOT NULL );
+
+
+#shell/ batch
+pg_dump --schema=schema_name db_name > backupfile.sql
+psql -d db_name -h localhost -U user_name < backupfile.sql
+OR
+pg_dump source_db_name --schema schema_name | psql -h destination_hostname -U destination_user_name -d destination_db_name

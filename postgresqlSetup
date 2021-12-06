@@ -1,0 +1,12 @@
+/var/lib/psql <-- Directory
+
+sudo yum install postgresql-server postgresql-contrib
+/usr/bin/postgresql-setup --initdb
+
+sudo -u postgres -i
+createuser -l -d -P your_username
+exit
+
+psql template1
+CREATE DATABASE name TEMPLATE = DEFAULT ENCODING = UTF8
+

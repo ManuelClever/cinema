@@ -1,0 +1,10 @@
+servlets
+tidy Writers and Readers
+check order of output in tests for writer and readers
+write tests for parsers
+
+{"firstname":"Maximilian","lastname":"Mustermann"}
+[{"lastname":"Mustermann","firstname":"Maximilian"},{"lastname":"Musterfrau","firstname":"Maxima"}]
+
+extra tasks:
+compress seatsJson

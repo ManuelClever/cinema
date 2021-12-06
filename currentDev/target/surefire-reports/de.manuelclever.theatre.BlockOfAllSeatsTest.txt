@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------
+Test set: de.manuelclever.theatre.BlockOfAllSeatsTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.025 s <<< FAILURE! - in de.manuelclever.theatre.BlockOfAllSeatsTest
+setSeat{Object[]}  Time elapsed: 0.024 s  <<< ERROR!
+java.lang.ArithmeticException: / by zero
+	at de.manuelclever.theatre.BlockOfAllSeatsTest.randomSeat(BlockOfAllSeatsTest.java:35)
+	at de.manuelclever.theatre.BlockOfAllSeatsTest.setSeats(BlockOfAllSeatsTest.java:17)
+
