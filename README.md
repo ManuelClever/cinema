@@ -1,2 +1,2 @@
 # cinema-java
-Example Java-Project to handle the movie and room booking of a cinema. Unfinished Project.
+An example Java project for managing movie and room reservations at a cinema. Unfinished Project.
